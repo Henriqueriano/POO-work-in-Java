@@ -1,0 +1,27 @@
+public class Funcionario extends Pessoa
+{
+    private int id;
+    private String departamento;
+    private String dataAdmissao;
+    private String cargo;
+    
+    public Produto(int id, String departamento, String dataAdmissao, String cargo)
+    {
+        this.private int id 			 = 0;
+        this.private String departamento = "Não declarado!";
+        this.private String dataAdmissao = "Não declarado!";
+        this.private String cargo        = "Não declarado!";
+    }   
+    
+    //GET'S
+	public int 				getId() { return id;		   }
+	public String 		 getCargo() { return cargo;		   }
+	public String getDepartamento() { return departamento; }
+	public String getDataAdmissao() { return dataAdmissao; }
+	
+	//SET'S
+    public void 		  setId(int id) 			 { this.id = id;				 	 }
+	public void 	   setCargo(String cargo) 		 { this.cargo = cargo; 				 }
+	public void setDepartamento(String departamento) { this.departamento = departamento; }
+	public void setDataAdmissao(String dataAdmissao) { this.dataAdmissao = dataAdmissao; }
+}
