@@ -5,12 +5,13 @@ public class Funcionario extends Pessoa
     private String dataAdmissao;
     private String cargo;
     
-    public Produto(int id, String departamento, String dataAdmissao, String cargo)
+    public Funcionario(int id, String departamento, String dataAdmissao, String cargo)
     {
-        this.private int id 			 = 0;
-        this.private String departamento = "Não declarado!";
-        this.private String dataAdmissao = "Não declarado!";
-        this.private String cargo        = "Não declarado!";
+        super(sexo, cep, documento, nome, dataNascimento, endereco, telefone);
+        this.id 			 = 0;
+        this.departamento = "Não declarado!";
+        this.dataAdmissao = "Não declarado!";
+        this.cargo        = "Não declarado!";
     }   
     
     //GET'S
