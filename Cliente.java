@@ -4,11 +4,11 @@ public class Cliente
     private String senha;
     private String contato;
     
-    public Produto(String login, String senha, String contato)
+    public Cliente(String login, String senha, String contato)
     {
-        this.private String login   = "Não declarado!";
-        this.private String senha   = "Não declarado!";
-        this.private String contato = "Não declarado!";
+        this.login   = "Não declarado!";
+        this.senha   = "Não declarado!";
+        this.contato = "Não declarado!";
     }   
     
     //GET'S
