@@ -10,13 +10,13 @@ public class Produto
     
     public Produto(int idProduto, String nome, String categoria, String marca, String modelo, float preco, int estoque)
     {
-        this.private int idProduto  	= 0;
-        this.private String nome 		= "Não declarado!";
-        this.private String categoria 	= "Não declarado!";
-        this.private String marca 		= "Não declarado!";
-        this.private String modelo 		= "Não declarado!";
-        this.private float preco 		= 999;
-        this.private int estoque 		= 0;
+        this.idProduto  	= 0;
+        this.nome 		= "Não declarado!";
+        this.categoria 	= "Não declarado!";
+        this.marca 		= "Não declarado!";
+        this.modelo 		= "Não declarado!";
+        this.preco 		= 999;
+        this.estoque 		= 0;
     }   
     
     //GET'S
