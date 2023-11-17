@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 public class Cliente
 {
     private String login;
@@ -20,4 +21,10 @@ public class Cliente
 	public void 	setLogin(String login) { this.login = login; 	 }
 	public void 	setSenha(String senha) { this.senha = senha; 	 }
 	public void setContato(String contato) { this.contato = contato; }
+	
+	//Exclusive methods
+	public void addCliente(Cliente sexo) 
+	{
+		c.add(sexo);
+	}
 }
