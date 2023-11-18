@@ -1,4 +1,5 @@
-abstract class Pessoa
+import java.util.ArrayList;
+public class Pessoa
 {                         
 	// Atributos
 	protected String sexo;
@@ -8,6 +9,7 @@ abstract class Pessoa
     protected String dataNascimento;
     protected String endereco;
     protected String telefone;
+	private   ArrayList<Pessoa> pessoas = new ArrayList<>();
     
     public Pessoa(String documento, String nome, String sexo, String dataNascimento, String cep, String endereco, String telefone)
     {
@@ -39,4 +41,17 @@ abstract class Pessoa
 	public void setEndereco(String endereco) 			 { this.endereco = endereco; 			 }
 	public void setTelefone(String telefone) 			 { this.telefone = telefone; 			 }
     
+	// METHODS
+	public void addPessoa(Pessoa pessoa) { pessoas.add(pessoa); }
+	public void listarPessoas() 
+	{ 
+	int i = 0;
+	System.out.println("Pessoas Cadastradas no Sistema:");
+	for(Pessoa pessoa: pessoas) {
+		i++;
+		System.out.printf("+-=--++--=---+=+---+--+--=--=+---+\nNome: %s\nCep: %s\nDocumento; %s\nSexo: %s\nData de nascimento: %s\nEndereço: %s\nTelefone: %s\n+-=--++--=---+=+---+--+--=--=+---+\n",pessoa.nome,pessoa.cep,pessoa.documento,pessoa.sexo,pessoa.dataNascimento,pessoa.endereco,pessoa.telefone);
+		
+	} 
+	System.out.printf("Total de pessoas cadastradas no sistema: %d", i);
+	}
 }
