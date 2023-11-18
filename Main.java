@@ -6,40 +6,12 @@ public class Main
 		//TODO: dar vida ao sistema aqui 
 		// Objects
 		Scanner sc = new Scanner(System.in);
-		Pessoa people= new Pessoa();
-		
-		// Dfinindo o objeto
-		System.out.println("Nome da pessoa: ");
-		String nome = sc.nextLine();
-		people.setNome(nome);
-		
-		System.out.println("Cep da pessoa: ");
-		String cep = sc.nextLine();
-		people.setCep(cep);
-		
-		System.out.println("Documento da pessoa: ");
-		String documento = sc.nextLine();
-		people.setDocumento(documento);
-		
-		System.out.println("Sexo da pessoa:: ");
-		String sexo = sc.nextLine();
-		people.setSexo(sexo);
-		
-		System.out.println("Data de nascimento da Pessoa: ");
-		String dataNascimento = sc.nextLine();
-		people.setDataNascimento(dataNascimento);
-		
-		System.out.println("Endereço da pessoa: ");
-		String endereco = sc.nextLine();
-		people.setEndereco(endereco);
-		
-		System.out.println("Telefone da pessoa: ");
-		String telefone = sc.nextLine();
-		people.setTelefone(telefone);
-		
+		Pessoa daniel = new Pessoa("444", "Daniel","M","21/07/2003","29176284","Rua 8, bairro Maria Niobe", "27997740242");
+		Pessoa brenim = new Pessoa("555", "Brenim","M","Não declarado!","9999999","Rua 7, bairro Rangatanga", "7777777777");
+
 		// TEstando
-		people.addPessoa(people);
-		people.listarPessoas();
+		daniel.addPessoa(daniel);
+		daniel.listarPessoas();
 	}
 	
 }

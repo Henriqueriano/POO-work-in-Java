@@ -13,13 +13,13 @@ public class Pessoa
     
     public Pessoa(String documento, String nome, String sexo, String dataNascimento, String cep, String endereco, String telefone)
     {
-		this.sexo 		= "Não declarado!";
-		this.cep 		   = "Não declarado!";
-        this.documento 	   = "Não declarado!";
-        this.nome 		   = "Não declarado!";
-        this.dataNascimento = "Não declarado!";
-        this.endereco 	   = "Não declarado!";
-        this.telefone 	   = "Não declarado!";
+		this.sexo 		= sexo;
+		this.cep 		   = cep;
+        this.documento 	   = documento;
+        this.nome 		   = nome;
+        this.dataNascimento = dataNascimento;
+        this.endereco 	   = endereco;
+        this.telefone 	   = telefone;
     }   
     
     //GET'S
