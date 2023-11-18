@@ -11,7 +11,7 @@ public class Pessoa
     protected String telefone;
 	private   ArrayList<Pessoa> pessoas = new ArrayList<>();
     
-    public Pessoa(String documento, String nome, String sexo, String dataNascimento, String cep, String endereco, String telefone)
+    public Pessoa()
     {
 		this.sexo 		= "Não declarado!";
 		this.cep 		   = "Não declarado!";
