@@ -4,7 +4,7 @@ public class Cliente extends Pessoa
     private String senha;
     private String contato;
     
-    public Cliente()
+    public Cliente(String login, String senha, String contato, String documento, String nome, String sexo, String dataNascimento, String cep, String endereco, String telefone)
     {
 		super(sexo, cep, documento, nome, dataNascimento, endereco, telefone);
         this.login   = "Não declarado!";

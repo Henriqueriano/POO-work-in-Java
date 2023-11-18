@@ -9,9 +9,9 @@ public class Pessoa
     protected String dataNascimento;
     protected String endereco;
     protected String telefone;
-	private   ArrayList<Pessoa> pessoas = new ArrayList<>();
+	protected   ArrayList<Pessoa> pessoas = new ArrayList<>();
     
-    public Pessoa()
+    public Pessoa(String documento, String nome, String sexo, String dataNascimento, String cep, String endereco, String telefone)
     {
 		this.sexo 		= "Não declarado!";
 		this.cep 		   = "Não declarado!";
