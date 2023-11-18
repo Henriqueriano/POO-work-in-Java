@@ -1,5 +1,6 @@
 abstract class Pessoa
-{
+{                         
+	// Atributos
 	protected String sexo;
     protected String cep;
 	protected String documento;
