@@ -1,4 +1,4 @@
-public class Pessoa
+abstract class Pessoa
 {
 	protected String sexo;
     protected String cep;
