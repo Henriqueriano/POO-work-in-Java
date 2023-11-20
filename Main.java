@@ -8,6 +8,9 @@ abstract class Pessoa
 		this.nome = nome;
 	}
 	
+	public String getNome() { return this.nome;}
+	public void setNome(String nome) { this.nome = nome;}
+	
 }
 
 class Funcionario extends Pessoa
@@ -18,6 +21,9 @@ class Funcionario extends Pessoa
 		super(nome);
 		this.numFuncional = numFuncional;
 	}
+	
+	public int getNumFuncional() { return this.numFuncional;}
+	public void setNumFuncional(int NumFuncional) { this.numFuncional = NumFuncional;}
 }
 
 class Produto 
@@ -37,6 +43,7 @@ class Produto
 	
 	public String getNome() { return this.nome;}
 	public String getModelo() { return this.modelo;}
+	
 }
 
 class Compra 
@@ -56,23 +63,26 @@ class Compra
 	}
 	
 	public void listarProdutos() {
+		int j = 0;
 		System.out.println("\nListando todos os produtos:");
 		for (Produto produto : produto) 
 		{
-			i++;
+			j++;
 			System.out.printf("+=---=+=---=+=---=+=---=+=---=+=---=+\nNome: %s\nModelo: %s\nValor: R$%.2f\n+=---=+=---=+=---=+=---=+=---=+=---=+",produto.getNome(),produto.getModelo(),produto.getValor());
 		}
-		System.out.printf("\nTotal de produtos na compra: %d", i);
+		System.out.printf("\nTotal de produtos na compra: %d", j);
 		System.out.printf("\nPróxima escolha: ");
 		 
 	}
 	
 	public void finalizarVenda() {
+		int k = 0;
 		for (Produto produto : produto) 
 		{
+			k++;
 			total += produto.getValor();
 		}
-		System.out.printf("\nTotal de produtos na compra: %d", i);
+		System.out.printf("\nTotal de produtos na compra: %d", k);
 		System.out.printf("\nTotal da compra: R$%.2f", total);
 		System.out.printf("\nNota fiscal gerada: %d", (int) Math.round(numNF) );
 	}
@@ -85,8 +95,10 @@ public class Main
 	{
 		Compra c = new Compra();
 		Scanner sc = new Scanner(System.in);
+		Funcionario carlin = new Funcionario("Carlin o brabo", 77);
 		System.out.println("ERP de Loja by Brenin and Daniel H.");
-		System.out.println("+=-------------------------------=+");
+		System.out.println("+=-------------------------------=+\n");
+		System.out.printf("%s( Numero funcional %d ) diz:\n", carlin.getNome(), carlin.getNumFuncional());
 		System.out.println("Para realizar uma compra digite 0;\nPara listar os produtos de sua compra atual digite1;\nPara Finalizar digite 2;");
 		System.out.print("Sua escolha: ");
 		try {
