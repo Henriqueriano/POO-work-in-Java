@@ -12,16 +12,16 @@ abstract class Pessoa
 }
 
 // Herança
-class Funcionario extends Pessoa 
+class Cliente extends Pessoa 
 {
-	protected int numFuncional;
-	public Funcionario(String nome, int numFuncional) 
+	private String cPF;
+	public Cliente(String nome, String cPF) 
 	{
 		super(nome);
-		this.numFuncional = numFuncional;
+		this.cPF = cPF;
 	}
-	public int getNumFuncional() { return this.numFuncional; }
-	public void setNumFuncional(int NumFuncional) { this.numFuncional = NumFuncional; }
+	public String getcPF() { return this.cPF; }
+	public void setcPF(String cPF) { this.cPF = cPF; }
 }
 
 class Produto 
@@ -45,6 +45,7 @@ class Produto
 
 // Agregamento
 class Compra {
+	Cliente cl = new Cliente("Carlin o brabo", "999.999.999-99");
 	private ArrayList<Produto> produto = new ArrayList<>();
 	private int numNF;
 	private double total;
@@ -77,6 +78,7 @@ class Compra {
 			k++;
 			total += produto.getValor();
 		}
+		System.out.printf("\nNome & CPF do cliente: %s, %s \n+=---=+=---=+=---=+=---=+=---=+=---=+", cl.getNome(), cl.getcPF());
 		System.out.printf("\nTotal de produtos na compra: %d", k);
 		System.out.printf("\nTotal da compra: R$%.2f", total);
 		System.out.printf("\nNota fiscal gerada: %d", (int) Math.round(numNF));
@@ -90,13 +92,10 @@ public class Main
 	{
 		Compra c = new Compra();
 		Scanner sc = new Scanner(System.in);
-		Funcionario carlin = new Funcionario("Carlin o brabo", 77);
 		System.out.println("ERP de Loja by Brenin and Daniel H.");
-		System.out.println("+=-------------------------------=+\n");
-		System.out.printf("%s( Numero funcional %d ) diz:\n", carlin.getNome(), carlin.getNumFuncional());
-		System.out.println(
-				"Para realizar uma compra digite 0;\nPara listar os produtos de sua compra atual digite1;\nPara Finalizar digite 2;");
-		System.out.print("Sua escolha: ");
+		System.out.println("+=-------------------------------=+");
+		System.out.println("Para realizar uma compra digite 0;\nPara listar os produtos da sua compra atual digite 1;\nReexibir este menu digite 2;\nPara Finalizar digite 3;");
+		System.out.print("Sua escolha (digite 2 para ajuda): ");
 		try 
 		{
 			// Seleção de caso
@@ -113,7 +112,7 @@ public class Main
 						System.out.println("Informe o modelo do produto: ");
 						String model = sc.next();
 						c.addProdutos(name, model, valor);
-						System.out.print("Produto Cadastrado! \nPróxima escolha: ");
+						System.out.print("Produto Cadastrado! \nPróxima escolha (digite 2 para ajuda): ");
 						break;
 
 					case 1:
@@ -121,17 +120,23 @@ public class Main
 						break;
 
 					case 2:
+						System.out.println("\nMENU:");
+						System.out.println("Para realizar uma compra digite 0;\nPara listar os produtos da sua compra atual digite 1;\nReexibir este menu digite 2;\nPara Finalizar digite 3;");
+						System.out.print("Sua escolha: ");
+					break;
+
+					case 3:
 						c.finalizarVenda();
+						sc.close();
 						fun = false;
 						break;
+
+					
 				}
 			}
 		} catch (Exception e) 
 		{
 			System.out.println("Erro de entrada!");
-		} finally 
-		{
-			sc.close();
 		}
-	}
+}
 }
