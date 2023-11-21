@@ -84,7 +84,7 @@ class Compra {
 					produto.getNome(), produto.getModelo(), produto.getValor());
 		}
 		System.out.printf("\nTotal de produtos na compra: %d", j);
-		System.out.printf("\nPróxima escolha: ");
+		System.out.printf("\nPróxima escolha (digite 2 para visualizar o menu): ");
 	}
 	public void finalizarVenda() 
 	{
@@ -113,14 +113,14 @@ public class Main
 		System.out.println("ERP de Loja by Brenin and Daniel H.");
 		System.out.println("+=-------------------------------=+");
 		System.out.println("Para realizar uma compra digite 0;\nPara listar os produtos da sua compra atual digite 1;\nReexibir este menu digite 2;\nPara Finalizar digite 3;");
-		System.out.print("Sua escolha (digite 2 para ajuda): ");
-		try 
+		System.out.print("Sua escolha: ");
+		boolean fun = true;
+		while(fun) 
 		{
-			// Seleção de caso
-			boolean fun = true;
-			while (fun) 
-			{
+			
+			try {
 				int choice = sc.nextInt();
+				// Seleção de caso
 				switch (choice) 
 				{
 					case 0:
@@ -131,7 +131,7 @@ public class Main
 						System.out.println("Informe o modelo do produto: ");
 						String model = sc.next();
 						c.addProdutos(name, model, valor);
-						System.out.print("Produto Cadastrado! \nPróxima escolha (digite 2 para ajuda): ");
+						System.out.print("Produto Cadastrado! \nPróxima escolha (digite 2 para visualizar o menu): ");
 						break;
 
 					case 1:
@@ -153,12 +153,15 @@ public class Main
 						fun = false;
 						break;
 
-					
 				}
 			}
-		} catch (Exception e) 
+		catch (Exception e) 
 		{
-			System.out.println("Erro de entrada!");
+			System.out.print("\033[H\033[2J");
+			System.out.println("Erro, contate aos devs! E recomece a sua compra!");
+			System.out.println("Desobedeceu as regras de Seleção amigo? (que feio em usuário)");
+			break;
 		}
 }
+}		
 }
