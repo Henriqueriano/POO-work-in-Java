@@ -1,4 +1,3 @@
-
 // Import space
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -6,22 +5,43 @@ import java.util.ArrayList;
 abstract class Pessoa 
 {
 	protected String nome;
-	public Pessoa(String nome)       { this.nome = nome; }
-	public String getNome()  		 { return this.nome; }
+    protected String endereco;
+    protected String dataNascimento;
+
+	public Pessoa(String nome, String endereco, String dataNascimento)      
+    { 
+        this.nome = nome; 
+        this.endereco = endereco;
+        this.dataNascimento = dataNascimento; 
+    }
+
+	public String getNome()  		   { return this.nome; }
+    public String getEndereco()  	   { return this.endereco; }
+    public String getDataNascimento()  { return this.dataNascimento; }
+
 	public void setNome(String nome) { this.nome = nome; }
+    public void setEndereco(String endereco) { this.endereco = endereco; }
+    public void setDataNascimento(String dataNascimento) { this.dataNascimento = dataNascimento; }
 }
 
 // Herança
-class Funcionario extends Pessoa 
+class Cliente extends Pessoa 
 {
-	protected int numFuncional;
-	public Funcionario(String nome, int numFuncional) 
+	private String documento; // Cadastro de Pessoa Física ou Jurídica (CPF OU CNPJ)
+    private String contato;
+
+	public Funcionario(String nome, String documento, String contato) 
 	{
 		super(nome);
-		this.numFuncional = numFuncional;
+        this.documento = documento;
+        this.contato = contato;
 	}
-	public int getNumFuncional() { return this.numFuncional; }
-	public void setNumFuncional(int NumFuncional) { this.numFuncional = NumFuncional; }
+
+	public documento() { return this.documento; }
+    public contato() { return this.contato; }
+
+	public void setdocumento(String documento) { this.documento = documento; }
+    public void setcontato(String contato) { this.contato = contato; }
 }
 
 class Produto 
