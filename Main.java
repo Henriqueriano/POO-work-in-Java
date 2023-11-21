@@ -47,7 +47,6 @@ class Produto
 class Compra {
 	private ArrayList<Produto> produto = new ArrayList<>();
 	private int numNF;
-	private int i = 0;
 	private double total;
 	public Compra() { this.numNF = (int) (Math.random() * 100); }
 	public int getNF() { return this.numNF;}
