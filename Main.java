@@ -5,23 +5,39 @@ import java.util.ArrayList;
 
 abstract class Pessoa 
 {
+	protected String endereco;
+	protected String dataNascimento;
 	protected String nome;
-	public Pessoa(String nome)       { this.nome = nome; }
+	public Pessoa(String nome, String endereco, String dataNascimento)       
+	{ 
+		this.nome = nome;
+		this.endereco = endereco;
+		this.dataNascimento = dataNascimento;
+
+	}
 	public String getNome()  		 { return this.nome; }
+	public String getEndereco()  	   { return this.endereco; }
+    public String getDataNascimento()  { return this.dataNascimento; }
 	public void setNome(String nome) { this.nome = nome; }
+	public void setEndereco(String endereco) { this.endereco = endereco; }
+    public void setDataNascimento(String dataNascimento) { this.dataNascimento = dataNascimento; }
+
 }
 
 // Herança
 class Cliente extends Pessoa 
 {
-	private String cPF;
-	public Cliente(String nome, String cPF) 
+	private String documento; // Cadastro de Pessoa Física ou Jurídica (CPF OU CNPJ)
+    private String contato;
+	public Cliente(String nome, String documento, String endereco, String dataNascimento) 
 	{
-		super(nome);
-		this.cPF = cPF;
+		super(nome, endereco, dataNascimento);
+		this.documento = documento;
 	}
-	public String getcPF() { return this.cPF; }
-	public void setcPF(String cPF) { this.cPF = cPF; }
+	public String getDocumento() { return this.documento; }
+    public String getContato() { return this.contato; }
+	public void SetDocumento(String documento) { this.documento = documento; }
+	public void setContato (String contato) { this.contato = contato; }
 }
 
 class Produto 
@@ -45,7 +61,7 @@ class Produto
 
 // Agregamento
 class Compra {
-	Cliente cl = new Cliente("Carlin o brabo", "999.999.999-99");
+	Cliente cl = new Cliente("Carlin o brabo", "999.999.999-99", "Rua OdeioMainZed, Número 444", "21/07/2003");
 	private ArrayList<Produto> produto = new ArrayList<>();
 	private int numNF;
 	private double total;
@@ -78,7 +94,9 @@ class Compra {
 			k++;
 			total += produto.getValor();
 		}
-		System.out.printf("\nNome & CPF do cliente: %s, %s \n+=---=+=---=+=---=+=---=+=---=+=---=+", cl.getNome(), cl.getcPF());
+		System.out.printf("\nNome & Documento do cliente: %s, %s \n+=---=+=---=+=---=+=---=+=---=+=---=+", cl.getNome(), cl.getDocumento());
+		System.out.printf("\nEndereço do cliente: %s", cl.getEndereco());
+		System.out.printf("\nData de nascimento do cliente: %s", cl.getDataNascimento());
 		System.out.printf("\nTotal de produtos na compra: %d", k);
 		System.out.printf("\nTotal da compra: R$%.2f", total);
 		System.out.printf("\nNota fiscal gerada: %d", (int) Math.round(numNF));
@@ -106,6 +124,7 @@ public class Main
 				switch (choice) 
 				{
 					case 0:
+						System.out.print("\033[H\033[2J");
 						double valor = Math.random() * 10;
 						System.out.println("\nInforme o nome do produto: ");
 						String name = sc.next();
@@ -116,16 +135,19 @@ public class Main
 						break;
 
 					case 1:
+						System.out.print("\033[H\033[2J");
 						c.listarProdutos();
 						break;
 
 					case 2:
+						System.out.print("\033[H\033[2J");
 						System.out.println("\nMENU:");
 						System.out.println("Para realizar uma compra digite 0;\nPara listar os produtos da sua compra atual digite 1;\nReexibir este menu digite 2;\nPara Finalizar digite 3;");
 						System.out.print("Sua escolha: ");
 					break;
 
 					case 3:
+						System.out.print("\033[H\033[2J");
 						c.finalizarVenda();
 						sc.close();
 						fun = false;
