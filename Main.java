@@ -1,27 +1,27 @@
+
 // Import space
 import java.util.Scanner;
 import java.util.ArrayList;
 
 abstract class Pessoa 
 {
+	protected String endereco;
+	protected String dataNascimento;
 	protected String nome;
-    protected String endereco;
-    protected String dataNascimento;
+	public Pessoa(String nome, String endereco, String dataNascimento)       
+	{ 
+		this.nome = nome;
+		this.endereco = endereco;
+		this.dataNascimento = dataNascimento;
 
-	public Pessoa(String nome, String endereco, String dataNascimento)      
-    { 
-        this.nome = nome; 
-        this.endereco = endereco;
-        this.dataNascimento = dataNascimento; 
-    }
-
-	public String getNome()  		   { return this.nome; }
-    public String getEndereco()  	   { return this.endereco; }
+	}
+	public String getNome()  		 { return this.nome; }
+	public String getEndereco()  	   { return this.endereco; }
     public String getDataNascimento()  { return this.dataNascimento; }
-
 	public void setNome(String nome) { this.nome = nome; }
-    public void setEndereco(String endereco) { this.endereco = endereco; }
+	public void setEndereco(String endereco) { this.endereco = endereco; }
     public void setDataNascimento(String dataNascimento) { this.dataNascimento = dataNascimento; }
+
 }
 
 // Herança
@@ -29,19 +29,15 @@ class Cliente extends Pessoa
 {
 	private String documento; // Cadastro de Pessoa Física ou Jurídica (CPF OU CNPJ)
     private String contato;
-
-	public Funcionario(String nome, String documento, String contato) 
+	public Cliente(String nome, String documento, String endereco, String dataNascimento) 
 	{
-		super(nome);
-        this.documento = documento;
-        this.contato = contato;
+		super(nome, endereco, dataNascimento);
+		this.documento = documento;
 	}
-
-	public documento() { return this.documento; }
-    public contato() { return this.contato; }
-
-	public void setdocumento(String documento) { this.documento = documento; }
-    public void setcontato(String contato) { this.contato = contato; }
+	public String getDocumento() { return this.documento; }
+    public String getContato() { return this.contato; }
+	public void SetDocumento(String documento) { this.documento = documento; }
+	public void setContato (String contato) { this.contato = contato; }
 }
 
 class Produto 
@@ -65,15 +61,16 @@ class Produto
 
 // Agregamento
 class Compra {
+	Cliente cl = new Cliente("Carlin o brabo", "999.999.999-99", "Rua OdeioMainZed, Número 444", "21/07/2003");
 	private ArrayList<Produto> produto = new ArrayList<>();
 	private int numNF;
 	private double total;
 	public Compra() { this.numNF = (int) (Math.random() * 100); }
 	public int getNF() { return this.numNF;}
 	public void setNF(int numNF) {this.numNF = numNF;}
-	public void addProdutos(String nome, String modelo, double valor) 
+	public void addProdutos(Produto p) 
 	{
-		produto.add(new Produto(nome, modelo, valor));
+		produto.add(p);
 	}
 	public void listarProdutos() 
 	{
@@ -87,7 +84,7 @@ class Compra {
 					produto.getNome(), produto.getModelo(), produto.getValor());
 		}
 		System.out.printf("\nTotal de produtos na compra: %d", j);
-		System.out.printf("\nPróxima escolha: ");
+		System.out.printf("\nPróxima escolha (digite 2 para visualizar o menu): ");
 	}
 	public void finalizarVenda() 
 	{
@@ -97,6 +94,9 @@ class Compra {
 			k++;
 			total += produto.getValor();
 		}
+		System.out.printf("\nNome & Documento do cliente: %s, %s \n+=---=+=---=+=---=+=---=+=---=+=---=+", cl.getNome(), cl.getDocumento());
+		System.out.printf("\nEndereço do cliente: %s", cl.getEndereco());
+		System.out.printf("\nData de nascimento do cliente: %s", cl.getDataNascimento());
 		System.out.printf("\nTotal de produtos na compra: %d", k);
 		System.out.printf("\nTotal da compra: R$%.2f", total);
 		System.out.printf("\nNota fiscal gerada: %d", (int) Math.round(numNF));
@@ -108,50 +108,69 @@ public class Main
 {
 	public static void main(String[] args) 
 	{
+		// Innstanciar Produtos da Loja
+		Produto p1 = new Produto("Ryzen 5", "5600G", 1128.50);
+		Produto p2 = new Produto("Intel i7 ", "2600", 310.90);
+		Produto p3 = new Produto("RX 580", "8Gb phanton gaming", 800.00);
+		Produto p4 = new Produto("RTX 3080", "12Gb SOYO", 1600.90);
+		Produto p5 = new Produto("Gabinete", "Hayom", 299.90);
+		Produto p6 = new Produto("8Gb", "DDR4 Pichau", 1600.90);
+
+
+
 		Compra c = new Compra();
+		c.addProdutos(p1);
+		c.addProdutos(p2);
+		c.addProdutos(p3);
+		c.addProdutos(p4);
+		c.addProdutos(p5);
+		c.addProdutos(p6);
 		Scanner sc = new Scanner(System.in);
-		Funcionario carlin = new Funcionario("Carlin o brabo", 77);
 		System.out.println("ERP de Loja by Brenin and Daniel H.");
-		System.out.println("+=-------------------------------=+\n");
-		System.out.printf("%s( Numero funcional %d ) diz:\n", carlin.getNome(), carlin.getNumFuncional());
-		System.out.println(
-				"Para realizar uma compra digite 0;\nPara listar os produtos de sua compra atual digite1;\nPara Finalizar digite 2;");
+		System.out.println("+=-------------------------------=+");
+		System.out.println("Para realizar uma compra digite 0;\nPara listar os produtos da sua compra atual digite 1;\nReexibir este menu digite 2;\nPara Finalizar digite 3;");
 		System.out.print("Sua escolha: ");
-		try 
+		boolean fun = true;
+		while(fun) 
 		{
-			// Seleção de caso
-			boolean fun = true;
-			while (fun) 
-			{
+			
+			try {
 				int choice = sc.nextInt();
+				// Seleção de caso
 				switch (choice) 
 				{
 					case 0:
-						double valor = Math.random() * 10;
-						System.out.println("\nInforme o nome do produto: ");
-						String name = sc.next();
-						System.out.println("Informe o modelo do produto: ");
-						String model = sc.next();
-						c.addProdutos(name, model, valor);
-						System.out.print("Produto Cadastrado! \nPróxima escolha: ");
+						System.out.print("Produto Cadastrado! \nPróxima escolha (digite 2 para visualizar o menu): ");
 						break;
 
 					case 1:
+						System.out.print("\033[H\033[2J");
 						c.listarProdutos();
 						break;
 
 					case 2:
+						System.out.print("\033[H\033[2J");
+						System.out.println("\nMENU:");
+						System.out.println("Para realizar uma compra digite 0;\nPara listar os produtos da sua compra atual digite 1;\nReexibir este menu digite 2;\nPara Finalizar digite 3;");
+						System.out.print("Sua escolha: ");
+					break;
+
+					case 3:
+						System.out.print("\033[H\033[2J");
 						c.finalizarVenda();
+						sc.close();
 						fun = false;
 						break;
+
 				}
 			}
-		} catch (Exception e) 
+		catch (Exception e) 
 		{
-			System.out.println("Erro de entrada!");
-		} finally 
-		{
-			sc.close();
+			System.out.print("\033[H\033[2J");
+			System.out.println("Erro, contate aos devs! E recomece a sua compra!");
+			System.out.println("Desobedeceu as regras de Seleção amigo? (que feio em usuário)");
+			break;
 		}
-	}
+}
+}		
 }
