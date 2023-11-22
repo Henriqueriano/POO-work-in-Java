@@ -45,15 +45,19 @@ class Produto
 	private String nome;
 	private String modelo;
 	private double valor;
-	public Produto(String nome, String modelo, double valor) 
+	private int id;
+	public Produto(int id, String nome, String modelo, double valor) 
 	{
+		this.id = id;
 		this.nome = nome;
 		this.modelo = modelo;
 		this.valor = valor;
 	}
+	public int getID() { return this.id;}
 	public double getValor()  { return this.valor; }
 	public String getNome()   { return this.nome; }
 	public String getModelo() { return this.modelo; }
+	public void setID(int ID) {this.id = id;}
 	public void setNome(String nome) { this.nome = nome;}
 	public void setModelo(String modelo) { this.modelo = modelo; }
 	public void setValor(double valor) { this.valor = valor; }
@@ -80,8 +84,8 @@ class Compra {
 		{
 			j++;
 			System.out.printf(
-					"+=---=+=---=+=---=+=---=+=---=+=---=+\nNome: %s\nModelo: %s\nValor: R$%.2f\n+=---=+=---=+=---=+=---=+=---=+=---=+",
-					produto.getNome(), produto.getModelo(), produto.getValor());
+					"\n+=---=+=---=+=---=+=---=+=---=+=---=+\nId: %d\nNome: %s\nModelo: %s\nValor: R$%.2f\n+=---=+=---=+=---=+=---=+=---=+=---=+",
+					produto.getID(),produto.getNome(), produto.getModelo(), produto.getValor());
 		}
 		System.out.printf("\nTotal de produtos na compra: %d", j);
 		System.out.printf("\nPróxima escolha (digite 2 para visualizar o menu): ");
@@ -103,32 +107,42 @@ class Compra {
 	}
 }
 
+
+class ItensDePedido {
+	Scanner sc = new Scanner(System.in);
+	Produto p1 = new Produto(12,"Ryzen 5", "5600G", 1128.50);
+	Produto p2 = new Produto(24,"Intel i7 ", "2600", 310.90);
+	Produto p3 = new Produto(42,"RX 580", "8Gb phanton gaming", 800.00);
+	Produto p4 = new Produto(84,"RTX 3080", "12Gb SOYO", 1600.90);
+	Produto p5 = new Produto(168,"Gabinete", "Hayom", 299.90);
+	Produto p6 = new Produto(336,"8Gb", "DDR4 Pichau", 1600.90);
+	private ArrayList<Produto> itens = new ArrayList<>();
+	public void addProdutos(Produto p) 
+	{
+		System.out.println("Id do produto:");
+		int id = sc.nextInt();
+		System.out.println("Nome do produto:");
+		String nome = sc.next();
+		System.out.println("Modelo do produto:");
+		String modelo = sc.next();
+		System.out.println("Id do produto:");
+		double valor = sc.nextDouble();
+		itens.add(new Produto(id, nome, modelo, valor));
+	}
+
+}
+
 // Vida do programa
 public class Main 
 {
 	public static void main(String[] args) 
 	{
-		// Innstanciar Produtos da Loja
-		Produto p1 = new Produto("Ryzen 5", "5600G", 1128.50);
-		Produto p2 = new Produto("Intel i7 ", "2600", 310.90);
-		Produto p3 = new Produto("RX 580", "8Gb phanton gaming", 800.00);
-		Produto p4 = new Produto("RTX 3080", "12Gb SOYO", 1600.90);
-		Produto p5 = new Produto("Gabinete", "Hayom", 299.90);
-		Produto p6 = new Produto("8Gb", "DDR4 Pichau", 1600.90);
-
-
-
+		// Definindo os Produtos da Loja
 		Compra c = new Compra();
-		c.addProdutos(p1);
-		c.addProdutos(p2);
-		c.addProdutos(p3);
-		c.addProdutos(p4);
-		c.addProdutos(p5);
-		c.addProdutos(p6);
 		Scanner sc = new Scanner(System.in);
 		System.out.println("ERP de Loja by Brenin and Daniel H.");
 		System.out.println("+=-------------------------------=+");
-		System.out.println("Para realizar uma compra digite 0;\nPara listar os produtos da sua compra atual digite 1;\nReexibir este menu digite 2;\nPara Finalizar digite 3;");
+		System.out.println("Para visualizar os produtos digite 0;\nPara escolher um produto para a compra atual digite 1;\nReexibir este menu digite 2;\nPara Finalizar digite 3;");
 		System.out.print("Sua escolha: ");
 		boolean fun = true;
 		while(fun) 
@@ -140,12 +154,11 @@ public class Main
 				switch (choice) 
 				{
 					case 0:
-						System.out.print("Produto Cadastrado! \nPróxima escolha (digite 2 para visualizar o menu): ");
-						break;
-
-					case 1:
 						System.out.print("\033[H\033[2J");
 						c.listarProdutos();
+					break;
+
+					case 1:
 						break;
 
 					case 2:
