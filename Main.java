@@ -231,6 +231,8 @@ abstract class ItensDePedido
 	public void addIten(Produto p) 
 	{
 		itens.add(p);
+		// Pensei em algo como: itens.add(getIdProduto(return produtos.idProduto));
+		// Não sei se funcionar, mas viajei aqui!
 	}
 
 // Metodo:
@@ -261,13 +263,15 @@ public class Main
 		boolean fun = true;
 
 // Instancia dos objetos:
+		ItensDePedido ip = new ItensDePedido(); // ERRO:  "Cannot instantiate the type ItensDePedido"
+		Produto p = new Produto();
 		Compra c = new Compra();
 		Scanner sc = new Scanner(System.in);
 
 // Apresentação do sistema:
 		System.out.println("ERP de Loja by Brenin and Daniel H.");
 		System.out.println("+=-------------------------------=+");
-		System.out.println("Para visualizar os produtos digite 0;\nPara escolher um produto para a compra atual digite 1;\nReexibir este menu digite 2;\nPara Finalizar digite 3;");
+		System.out.println("Para visualizar os produtos digite 0;\nPara escolher um produto para a compra atual digite 1;\nReexibir este menu digite 2;\nPara Finalizar digite 3;\nCadastrar novos produtos digite 4");
 		System.out.print("Sua escolha: ");
 
 		while(fun) 
@@ -285,6 +289,12 @@ public class Main
 					break;
 
 					case 1:
+						System.out.print("\033[H\033[2J");
+						System.out.println("Digite o ID do produto que você queria adicionar a compra: ");
+						int idPedido = sc.nextInt();
+						c.addIten(); // ERRO: "The method addIten(Produto) in the type ItensDePedido is not applicable for the arguments ()"
+						// Como fazer para percorrer o ArrayList e adicionar o Produto com o mesmo ID do input do usuário;
+
 						break;
 
 					case 2:
@@ -301,13 +311,20 @@ public class Main
 						fun = false;
 						break;
 
+					case 4:
+						System.out.print("\033[H\033[2J");
+						p.cadastrarProdutos(); // Por algum motivo dá o seguinte erro erro: "The constructor Produto() is undefined"
+						// Sendo que o objeto produto está instancido da seguinte forma: "Produto p = new Produto();"
+						break;
+
 				}
 			}
 		catch (Exception e) 
 		{
 			System.out.print("\033[H\033[2J");
-			System.out.println("Erro, contate aos devs! E recomece a sua compra!");
-			System.out.println("Desobedeceu as regras de Seleção amigo? (que feio em usuário)");
+			System.out.println("Erro no processo da sua compra!");
+			System.out.println("Digitou algo errado? Recomesse a compra.");
+			System.out.println("Digitou tudo certo? Contate os devs.");
 			break;
 		}
 }
