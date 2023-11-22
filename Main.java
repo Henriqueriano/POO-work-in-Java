@@ -265,7 +265,7 @@ public class Main
 
 				}
 			}
-		catch (Exception e) 
+		catch (Exception e) // Tratamento de erro:
 		{
 			System.out.print("\033[H\033[2J");
 			System.out.println("Erro, contate aos devs e recomece a sua compra!");
