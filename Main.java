@@ -1,86 +1,169 @@
-
-// Import space
+// Import space:
 import java.util.Scanner;
 import java.util.ArrayList;
 
+// Classe pai de Cliente:
 abstract class Pessoa 
 {
+// Atributos:
 	protected String endereco;
 	protected String dataNascimento;
 	protected String nome;
+
+// Construtor da classe Pessoa:
 	public Pessoa(String nome, String endereco, String dataNascimento)       
 	{ 
 		this.nome = nome;
 		this.endereco = endereco;
 		this.dataNascimento = dataNascimento;
-
 	}
-	public String getNome()  		 { return this.nome; }
-	public String getEndereco()  	   { return this.endereco; }
-    public String getDataNascimento()  { return this.dataNascimento; }
-	public void setNome(String nome) { this.nome = nome; }
-	public void setEndereco(String endereco) { this.endereco = endereco; }
-    public void setDataNascimento(String dataNascimento) { this.dataNascimento = dataNascimento; }
 
+// Get's da classe:
+	public String getNome()  		 
+	{ 
+		return this.nome; 
+	}
+	public String getEndereco()  	   
+	{ 
+		return this.endereco; 
+	}
+    public String getDataNascimento()  
+	{ 
+		return this.dataNascimento; 
+	}
+
+// Set's da classe:
+	public void setNome(String nome) 
+	{ 
+		this.nome = nome; 
+	}
+	public void setEndereco(String endereco) 
+	{ 
+		this.endereco = endereco; 
+	}
+    public void setDataNascimento(String dataNascimento) 
+	{ 
+		this.dataNascimento = dataNascimento; 
+	}
 }
 
-// Herança
+// Classe filha de Pessoa:
 class Cliente extends Pessoa 
 {
+// Atributos:
 	private String documento; // Cadastro de Pessoa Física ou Jurídica (CPF OU CNPJ)
     private String contato;
+
+// Construtor da Classe Cliente:
 	public Cliente(String nome, String documento, String endereco, String dataNascimento) 
 	{
 		super(nome, endereco, dataNascimento);
 		this.documento = documento;
 	}
-	public String getDocumento() { return this.documento; }
-    public String getContato() { return this.contato; }
-	public void SetDocumento(String documento) { this.documento = documento; }
-	public void setContato (String contato) { this.contato = contato; }
+
+// Get's da classe:
+	public String getDocumento() 
+	{ 
+		return this.documento; 
+	}
+    public String getContato() 
+	{ 
+		return this.contato; 
+	}
+
+// Set's da classe:
+	public void SetDocumento(String documento) 
+	{ 
+		this.documento = documento;
+	}
+	public void setContato (String contato)
+	{ 
+		this.contato = contato; 
+	}
 }
 
 class Produto 
 {
+// Atributos:
+	Scanner sc = new Scanner(System.in);
+	private ArrayList<Produto> produtos = new ArrayList<>();
 	private String nome;
 	private String modelo;
 	private double valor;
-	private int id;
-	public Produto(int id, String nome, String modelo, double valor) 
+	private int idProduto;
+
+// Construtor da classe Produto:
+	public Produto(int idProduto, String nome, String modelo, double valor) 
 	{
-		this.id = id;
+		this.idProduto = idProduto;
 		this.nome = nome;
 		this.modelo = modelo;
 		this.valor = valor;
 	}
-	public int getID() { return this.id;}
-	public double getValor()  { return this.valor; }
-	public String getNome()   { return this.nome; }
-	public String getModelo() { return this.modelo; }
-	public void setID(int ID) {this.id = id;}
-	public void setNome(String nome) { this.nome = nome;}
-	public void setModelo(String modelo) { this.modelo = modelo; }
-	public void setValor(double valor) { this.valor = valor; }
-}
 
-// Agregamento
-class Compra {
-	Cliente cl = new Cliente("Carlin o brabo", "999.999.999-99", "Rua OdeioMainZed, Número 444", "21/07/2003");
-	private ArrayList<Produto> produto = new ArrayList<>();
-	private int numNF;
-	private double total;
-	public Compra() { this.numNF = (int) (Math.random() * 100); }
-	public int getNF() { return this.numNF;}
-	public void setNF(int numNF) {this.numNF = numNF;}
-	public void addProdutos(Produto p) 
-	{
-		produto.add(p);
+// Get's da classe:
+	public int getID() 
+	{ 
+		return this.idProduto;
 	}
+	public double getValor()  
+	{ 
+		return this.valor; 
+	}
+	public String getNome()   
+	{ 
+		return this.nome; 
+	}
+	public String getModelo() 
+	{ 
+		return this.modelo; 
+	}
+
+// Set's da classe:
+	public void setID(int ID) 
+	{
+		this.idProduto = ID;
+	}
+	public void setNome(String nome) 
+	{ 
+		this.nome = nome;
+	}
+	public void setModelo(String modelo) 
+	{ 
+		this.modelo = modelo; 
+	}
+	public void setValor(double valor) 
+	{ 
+		this.valor = valor; 
+	}
+
+// Metodo:
+	public void cadastrarProdutos() 
+	{
+		System.out.println("Id do produto:");
+		int id = sc.nextInt();
+		System.out.println("Nome do produto:");
+		String nome = sc.next();
+		System.out.println("Modelo do produto:");
+		String modelo = sc.next();
+		System.out.println("Id do produto:");
+		double valor = sc.nextDouble();
+		produtos.add(new Produto(id, nome, modelo, valor));
+	}
+
+// Metodo:
+	public void addProduto(Produto p) 
+	{
+		produtos.add(p);
+
+	}
+
+// Metodo:
 	public void listarProdutos() 
 	{
 		int j = 0;
 		System.out.println("\nListando todos os produtos:");
-		for (Produto produto : produto) 
+		for (Produto produto : produtos) 
 		{
 			j++;
 			System.out.printf(
@@ -90,10 +173,41 @@ class Compra {
 		System.out.printf("\nTotal de produtos na compra: %d", j);
 		System.out.printf("\nPróxima escolha (digite 2 para visualizar o menu): ");
 	}
+
+}
+
+// Agregamento:
+class Compra extends ItensDePedido
+{
+
+// Atributos:
+	Cliente cl = new Cliente("Carlin o brabo", "999.999.999-99", "Rua OdeioMainZed, Número 444", "21/07/2003");
+	private int numNF;
+
+// Construtor da classe:
+	public Compra() 
+	{ 
+		this.numNF = (int) (Math.random() * 100); 
+	}
+
+// Get's da classe:
+	public int getNF() 
+	{ 
+		return this.numNF;
+	}
+
+// Set's da classe:
+	public void setNF(int numNF) 
+	{
+		this.numNF = numNF;
+	}
+
+// Metodo:
 	public void finalizarVenda() 
 	{
+		double total = 0;
 		int k = 0;
-		for (Produto produto : produto) 
+		for (Produto produto : itens) 
 		{
 			k++;
 			total += produto.getValor();
@@ -107,55 +221,67 @@ class Compra {
 	}
 }
 
-
-class ItensDePedido {
+abstract class ItensDePedido
+{
+// Atributos:
 	Scanner sc = new Scanner(System.in);
-	Produto p1 = new Produto(12,"Ryzen 5", "5600G", 1128.50);
-	Produto p2 = new Produto(24,"Intel i7 ", "2600", 310.90);
-	Produto p3 = new Produto(42,"RX 580", "8Gb phanton gaming", 800.00);
-	Produto p4 = new Produto(84,"RTX 3080", "12Gb SOYO", 1600.90);
-	Produto p5 = new Produto(168,"Gabinete", "Hayom", 299.90);
-	Produto p6 = new Produto(336,"8Gb", "DDR4 Pichau", 1600.90);
-	private ArrayList<Produto> itens = new ArrayList<>();
-	public void addProdutos(Produto p) 
+	protected ArrayList<Produto> itens = new ArrayList<>();
+
+// Metodo:
+	public void addIten(Produto p) 
 	{
-		System.out.println("Id do produto:");
-		int id = sc.nextInt();
-		System.out.println("Nome do produto:");
-		String nome = sc.next();
-		System.out.println("Modelo do produto:");
-		String modelo = sc.next();
-		System.out.println("Id do produto:");
-		double valor = sc.nextDouble();
-		itens.add(new Produto(id, nome, modelo, valor));
+		itens.add(p);
+	}
+
+// Metodo:
+	public void listarItens() 
+	{
+		int j = 0;
+		System.out.println("\nListando todos os produtos:");
+		for (Produto produto : itens) 
+		{
+			j++;
+			System.out.printf(
+					"\n+=---=+=---=+=---=+=---=+=---=+=---=+\nId: %d\nNome: %s\nModelo: %s\nValor: R$%.2f\n+=---=+=---=+=---=+=---=+=---=+=---=+",
+					produto.getID(),produto.getNome(), produto.getModelo(), produto.getValor());
+		}
+		System.out.printf("\nTotal de produtos na compra: %d", j);
+		System.out.printf("\nPróxima escolha (digite 2 para visualizar o menu): ");
 	}
 
 }
 
-// Vida do programa
+// Vida do programa:
 public class Main 
 {
 	public static void main(String[] args) 
 	{
-		// Definindo os Produtos da Loja
+
+// Atributos:
+		boolean fun = true;
+
+// Instancia dos objetos:
 		Compra c = new Compra();
 		Scanner sc = new Scanner(System.in);
+
+// Apresentação do sistema:
 		System.out.println("ERP de Loja by Brenin and Daniel H.");
 		System.out.println("+=-------------------------------=+");
 		System.out.println("Para visualizar os produtos digite 0;\nPara escolher um produto para a compra atual digite 1;\nReexibir este menu digite 2;\nPara Finalizar digite 3;");
 		System.out.print("Sua escolha: ");
-		boolean fun = true;
+
 		while(fun) 
 		{
 			
-			try {
+			try 
+			{
 				int choice = sc.nextInt();
 				// Seleção de caso
 				switch (choice) 
 				{
 					case 0:
 						System.out.print("\033[H\033[2J");
-						c.listarProdutos();
+						c.listarItens();
 					break;
 
 					case 1:
